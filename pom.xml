@@ -10,14 +10,35 @@
 	
     <artifactId>k9-lib-core</artifactId>
 	
-    <name>k9-lib-core</name>
-    <description>K9's Core Library</description>
-	
+    <name>[Lib] K9 Backend Core</name>
+
     <properties>
-        <mainClass>com.midorlo.k9.InitCore</mainClass>
+        <mainClass>com.midorlo.k9.LibCore</mainClass>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.midorlo.k9</groupId>
+            <artifactId>k9-lib-shared-models</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Spring Docs Dependencies: - OpenApi UI - OpenApi Rest -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${springdoc-openapi-ui.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-data-rest</artifactId>
+            <version>${springdoc-openapi-data-rest.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -46,7 +67,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>5.3.9</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
