@@ -1,0 +1,40 @@
+Manifest-Version: 1.0
+Main-Class: com.midorlo.k9.LibCore
+Class-Path: spring-boot-2.5.4.jar spring-web-5.3.9.jar postgresql-42.2.2
+ 3.jar spring-boot-starter-jdbc-2.5.4.jar jakarta.transaction-api-1.3.3.
+ jar logback-classic-1.2.5.jar jul-to-slf4j-1.7.32.jar log4j-to-slf4j-2.
+ 14.1.jar springdoc-openapi-webmvc-core-1.5.9.jar tomcat-embed-el-9.0.52
+ .jar spring-boot-starter-aop-2.5.4.jar json-smart-2.4.7.jar javassist-3
+ .27.0-GA.jar jackson-datatype-jdk8-2.12.4.jar spring-hateoas-1.3.3.jar 
+ jakarta.activation-1.2.2.jar spring-context-support-5.3.9.jar jackson-a
+ nnotations-2.12.4.jar spring-plugin-core-2.0.0.RELEASE.jar aspectjweave
+ r-1.9.7.jar tomcat-embed-websocket-9.0.52.jar byte-buddy-1.10.22.jar jb
+ oss-logging-3.4.2.Final.jar HikariCP-4.0.3.jar antlr-2.7.7.jar spring-b
+ oot-starter-data-jpa-2.5.4.jar spring-aspects-5.3.9.jar spring-boot-sta
+ rter-cache-2.5.4.jar springdoc-openapi-data-rest-1.5.9.jar spring-expre
+ ssion-5.3.9.jar classmate-1.5.1.jar slf4j-api-1.7.32.jar jackson-core-2
+ .12.4.jar spring-boot-starter-logging-2.5.4.jar spring-boot-devtools-2.
+ 5.4.jar spring-orm-5.3.9.jar jakarta.annotation-api-1.3.5.jar swagger-c
+ ore-2.1.9.jar dom4j-2.1.3.jar istack-commons-runtime-3.0.12.jar jackson
+ -module-parameter-names-2.12.4.jar webjars-locator-core-0.46.jar logbac
+ k-core-1.2.5.jar spring-boot-autoconfigure-2.5.4.jar spring-jdbc-5.3.9.
+ jar log4j-api-2.14.1.jar spring-data-commons-2.5.4.jar snakeyaml-1.28.j
+ ar springdoc-openapi-common-1.5.9.jar jakarta.validation-api-2.0.2.jar 
+ swagger-models-2.1.9.jar jackson-dataformat-yaml-2.12.4.jar hibernate-c
+ ommons-annotations-5.1.2.Final.jar jakarta.xml.bind-api-2.3.3.jar tomca
+ t-embed-core-9.0.52.jar jakarta.persistence-api-2.2.3.jar spring-core-5
+ .3.9.jar jackson-datatype-jsr310-2.12.4.jar spring-tx-5.3.9.jar spring-
+ webmvc-5.3.9.jar spring-aop-5.3.9.jar spring-boot-starter-web-2.5.4.jar
+  springdoc-openapi-hateoas-1.5.9.jar springdoc-openapi-ui-1.5.9.jar spr
+ ing-context-5.3.9.jar jaxb-runtime-2.3.5.jar hibernate-core-5.4.32.Fina
+ l.jar swagger-integration-2.1.9.jar asm-9.1.jar accessors-smart-2.4.7.j
+ ar spring-boot-starter-tomcat-2.5.4.jar json-path-2.5.0.jar spring-data
+ -rest-core-3.5.4.jar commons-lang3-3.12.0.jar spring-boot-configuration
+ -processor-2.5.4.jar spring-boot-starter-json-2.5.4.jar spring-jcl-5.3.
+ 9.jar spring-beans-5.3.9.jar evo-inflector-1.2.2.jar k9-lib-shared-mode
+ ls-0.0.1-SNAPSHOT.jar lombok-1.18.20.jar jakarta.activation-api-1.2.2.j
+ ar swagger-annotations-2.1.9.jar checker-qual-3.5.0.jar jackson-databin
+ d-2.12.4.jar spring-data-jpa-2.5.4.jar spring-boot-starter-2.5.4.jar sw
+ agger-ui-3.49.0.jar txw2-2.3.5.jar jandex-2.2.3.Final.jar classgraph-4.
+ 8.69.jar
+
