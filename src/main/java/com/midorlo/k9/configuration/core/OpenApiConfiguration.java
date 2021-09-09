@@ -14,32 +14,27 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenApiConfiguration {
 
-    private final CoreConfiguration CoreConfiguration;
+    private final CoreConfiguration               coreConfiguration;
+    private final CoreConfiguration.ApiDocs       apiDocs;
+    private final CoreConfiguration.About.License license;
+    private final CoreConfiguration.About.Contact contact;
 
-    public OpenApiConfiguration(CoreConfiguration props) {
-        this.CoreConfiguration = props;
+    public OpenApiConfiguration(CoreConfiguration coreConfiguration) {
+        this.coreConfiguration = coreConfiguration;
+        this.apiDocs           = coreConfiguration.getApidocs();
+        this.license           = coreConfiguration.getAbout().getLicense();
+        this.contact           = coreConfiguration.getAbout().getContact();
     }
 
     @Bean
     public OpenAPI customOpenAPI() {
-
-        CoreConfiguration.ApiDocs       apiDocs = CoreConfiguration.getApidocs();
-        CoreConfiguration.About.License license = CoreConfiguration.getAbout().getLicense();
-        CoreConfiguration.About.Contact contact = CoreConfiguration.getAbout().getContact();
-
-        return new OpenAPI()
-                .info(new Info()
-                              .title(apiDocs.getTitle())
-                              .version(CoreConfiguration.getVersion())
-                              .description(apiDocs.getDescription())
-                              .termsOfService(apiDocs.getTos())
-                              .license(
-                                      new License()
-                                              .name(license.getName())
-                                              .url(license.getUrl()))
-                              .contact(new Contact()
-                                               .name(contact.getName())
-                                               .email(contact.getEmail()))
-                     );
+        return new OpenAPI().info(new Info().title(apiDocs.getTitle())
+                                            .version(coreConfiguration.getVersion())
+                                            .description(apiDocs.getDescription())
+                                            .termsOfService(apiDocs.getTos())
+                                            .license(new License().name(license.getName())
+                                                                  .url(license.getUrl()))
+                                            .contact(new Contact().name(contact.getName())
+                                                                  .email(contact.getEmail())));
     }
 }
