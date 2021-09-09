@@ -1,0 +1,20 @@
+core:
+  version: 0.0.1-SNAPSHOT
+
+  apidocs:
+    title: Api Docs
+    description: K9 - Api Documentation
+
+  about:
+    contact:
+      name: mdl
+      email: admin@midorlo.com
+    license:
+      name: all rights reserved
+      url: https://k9.midorlo.com/license
+
+
+
+
+
+

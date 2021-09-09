@@ -14,32 +14,32 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenApiConfiguration {
 
-   private final ApplicationProperties props;
+    private final CoreConfiguration CoreConfiguration;
 
-   public OpenApiConfiguration(ApplicationProperties props) {
-      this.props = props;
-   }
+    public OpenApiConfiguration(CoreConfiguration props) {
+        this.CoreConfiguration = props;
+    }
 
-   @Bean
-   public OpenAPI customOpenAPI() {
+    @Bean
+    public OpenAPI customOpenAPI() {
 
-      ApplicationProperties.Apidocs apidocs = props.getApidocs();
-      ApplicationProperties.Apidocs.License license = apidocs.getLicense();
-      ApplicationProperties.Apidocs.Contact contact = apidocs.getContact();
+        CoreConfiguration.ApiDocs       apiDocs = CoreConfiguration.getApidocs();
+        CoreConfiguration.About.License license = CoreConfiguration.getAbout().getLicense();
+        CoreConfiguration.About.Contact contact = CoreConfiguration.getAbout().getContact();
 
-      return new OpenAPI()
-         .info(new Info()
-            .title(apidocs.getTitle())
-            .version(props.getVersion())
-            .description(apidocs.getDescription())
-            .termsOfService(apidocs.getTos())
-            .license(
-               new License()
-                  .name(license.getName())
-                  .url(license.getUrl()))
-            .contact(new Contact()
-               .name(contact.getName())
-               .email(contact.getEmail()))
-         );
-   }
+        return new OpenAPI()
+                .info(new Info()
+                              .title(apiDocs.getTitle())
+                              .version(CoreConfiguration.getVersion())
+                              .description(apiDocs.getDescription())
+                              .termsOfService(apiDocs.getTos())
+                              .license(
+                                      new License()
+                                              .name(license.getName())
+                                              .url(license.getUrl()))
+                              .contact(new Contact()
+                                               .name(contact.getName())
+                                               .email(contact.getEmail()))
+                     );
+    }
 }
