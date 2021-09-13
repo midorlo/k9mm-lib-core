@@ -1,4 +1,4 @@
-package com.midorlo.k9.domain.core;
+package com.midorlo.k9.domain.util;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @ToString
 @NoArgsConstructor
 @Accessors(chain = true)
-public abstract class ApplicationEntity {
+public abstract class  ApplicationEntity {
 
     public ApplicationEntity(String name) {
         this.name = name;

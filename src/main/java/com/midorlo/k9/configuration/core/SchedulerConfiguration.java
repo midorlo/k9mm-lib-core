@@ -1,6 +1,6 @@
 package com.midorlo.k9.configuration.core;
 
-import com.midorlo.k9.components.core.ExceptionHandlingAsyncTaskExecutor;
+import com.midorlo.k9.component.core.ExceptionHandlingAsyncTaskExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;

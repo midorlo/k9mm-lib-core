@@ -1,6 +1,7 @@
 package com.midorlo.k9.configuration.cache;
 
-import com.midorlo.k9.configuration.core.CoreConfiguration;
+import com.midorlo.k9.configuration.core.CoreProperties;
+import com.midorlo.k9.domain.core.ComponentDescription;
 import lombok.extern.slf4j.Slf4j;
 import org.ehcache.config.builders.CacheConfigurationBuilder;
 import org.ehcache.config.builders.ExpiryPolicyBuilder;
@@ -16,21 +17,20 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import java.time.Duration;
+import java.util.List;
 
-@Configuration
 @EnableCaching
 @Slf4j
-public class CacheConfiguration {
+public abstract class CacheConfiguration {
 
-    private       GitProperties                                           gitProperties;
-    private       BuildProperties                                         buildProperties;
-    private final javax.cache.configuration.Configuration<Object, Object> jCacheConfig;
+    private         GitProperties                                           gitProperties;
+    private         BuildProperties                                         buildProperties;
+    protected final javax.cache.configuration.Configuration<Object, Object> jCacheConfig;
 
-    public CacheConfiguration(CoreConfiguration coreConfiguration) {
-        CoreConfiguration.Cache.Ehcache ehcache = coreConfiguration.getCache().getEhcache();
+    public CacheConfiguration(CoreProperties coreProperties) {
+        CoreProperties.Cache.Ehcache ehcache = coreProperties.getCache().getEhcache();
         jCacheConfig = Eh107Configuration
                 .fromEhcacheCacheConfiguration(
                         CacheConfigurationBuilder
@@ -63,7 +63,13 @@ public class CacheConfiguration {
      */
     @Bean
     public JCacheManagerCustomizer configureModuleCaches() {
-        return cm -> createCache(cm, com.midorlo.k9.domain.core.ModuleMeta.class.getName(), jCacheConfig);
+        return cm -> getCaches().forEach(cc -> createCache(cm, cc, jCacheConfig));
+    }
+
+
+    protected List<String> getCaches() {
+        return List.of(ComponentDescription.class.getName()
+                      );
     }
 
     /**
@@ -82,7 +88,9 @@ public class CacheConfiguration {
      * @param cacheManager injected.
      * @param cacheName    unique.
      */
-    private void createCache(javax.cache.CacheManager cacheManager, String cacheName, javax.cache.configuration.Configuration<Object, Object> jCacheConfig) {
+    protected void createCache(javax.cache.CacheManager cacheManager,
+                               String cacheName,
+                               javax.cache.configuration.Configuration<Object, Object> jCacheConfig) {
         javax.cache.Cache<Object, Object> cache = cacheManager.getCache(cacheName);
         if (cache != null) {
             cache.clear();

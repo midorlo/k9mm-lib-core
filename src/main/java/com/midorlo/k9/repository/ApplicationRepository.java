@@ -1,6 +1,6 @@
 package com.midorlo.k9.repository;
 
-import com.midorlo.k9.domain.core.ApplicationEntity;
+import com.midorlo.k9.domain.util.ApplicationEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.lang.NonNull;

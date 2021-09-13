@@ -14,22 +14,22 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenApiConfiguration {
 
-    private final CoreConfiguration               coreConfiguration;
-    private final CoreConfiguration.ApiDocs       apiDocs;
-    private final CoreConfiguration.About.License license;
-    private final CoreConfiguration.About.Contact contact;
+    private final CoreProperties               coreProperties;
+    private final CoreProperties.ApiDocs       apiDocs;
+    private final CoreProperties.About.License license;
+    private final CoreProperties.About.Contact contact;
 
-    public OpenApiConfiguration(CoreConfiguration coreConfiguration) {
-        this.coreConfiguration = coreConfiguration;
-        this.apiDocs           = coreConfiguration.getApidocs();
-        this.license           = coreConfiguration.getAbout().getLicense();
-        this.contact           = coreConfiguration.getAbout().getContact();
+    public OpenApiConfiguration(CoreProperties coreProperties) {
+        this.coreProperties = coreProperties;
+        this.apiDocs        = coreProperties.getApidocs();
+        this.license        = coreProperties.getAbout().getLicense();
+        this.contact        = coreProperties.getAbout().getContact();
     }
 
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI().info(new Info().title(apiDocs.getTitle())
-                                            .version(coreConfiguration.getVersion())
+                                            .version(coreProperties.getVersion())
                                             .description(apiDocs.getDescription())
                                             .termsOfService(apiDocs.getTos())
                                             .license(new License().name(license.getName())

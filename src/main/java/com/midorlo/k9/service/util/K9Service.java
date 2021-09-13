@@ -1,6 +1,6 @@
-package com.midorlo.k9.service;
+package com.midorlo.k9.service.util;
 
-import com.midorlo.k9.domain.core.ApplicationEntity;
+import com.midorlo.k9.domain.util.ApplicationEntity;
 import com.midorlo.k9.repository.ApplicationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;

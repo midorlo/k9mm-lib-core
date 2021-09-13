@@ -1,4 +1,4 @@
-package com.midorlo.k9.components.core;
+package com.midorlo.k9.component.core;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.DisposableBean;

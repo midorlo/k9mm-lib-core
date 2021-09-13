@@ -2,6 +2,7 @@ package com.midorlo.k9.configuration.core;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -12,19 +13,28 @@ import org.springframework.context.annotation.PropertySources;
  * Data-Bound from {@code core.yml}, also (optionally)  {@code git.properties} & {@code META-INF/build-info.properties}
  */
 @Data
+@Slf4j
 @Configuration
-@ConfigurationProperties(value = "core", ignoreUnknownFields = false)
 @PropertySources({
+        @PropertySource(value = "classpath:core.yml"),
         @PropertySource(value = "classpath:git.properties", ignoreResourceNotFound = true),
         @PropertySource(value = "classpath:META-INF/build-info.properties", ignoreResourceNotFound = true)
 })
-public class CoreConfiguration {
+@ConfigurationProperties("core.yml")
+public class CoreProperties {
+
+    public CoreProperties() {
+        log.info("Created" + this);
+    }
 
     private final ApiDocs apidocs = new ApiDocs();
     private final About   about   = new About();
     private final Cache   cache   = new Cache();
+    private final Logging logging = new Logging();
 
-    private String version;
+    private String  name;
+    private String  version;
+    private Integer port;
 
     @Data
     public static class About {
@@ -43,7 +53,6 @@ public class CoreConfiguration {
             private String name;
             private String email;
         }
-
     }
 
     @Data
@@ -99,4 +108,22 @@ public class CoreConfiguration {
             private int      subscriptionConnectionMinimumIdleSize = 1; // default as in redisson
         }
     }
+
+    @Data
+    public static class Logging {
+
+        private       boolean  useJsonFormat = false;
+        private final Logstash logstash      = new Logstash();
+
+        @Data
+        @Accessors(chain = true)
+        public static class Logstash {
+
+            private boolean enabled   = false;
+            private String  host      = null;
+            private int     port      = 0;
+            private int     queueSize = 0;
+        }
+    }
+
 }

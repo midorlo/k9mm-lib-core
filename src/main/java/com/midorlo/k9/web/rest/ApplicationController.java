@@ -1,8 +1,8 @@
 //package com.midorlo.k9.web.rest;
 //
-//import com.midorlo.k9.domain.core.ApplicationEntity;
+//import com.midorlo.k9.domain.util.ApplicationEntity;
 //import com.midorlo.k9.repository.ApplicationRepository;
-//import com.midorlo.k9.service.K9Service;
+//import com.midorlo.k9.service.util.K9Service;
 //import org.springframework.data.domain.Page;
 //import org.springframework.data.domain.Pageable;
 //import org.springframework.http.HttpHeaders;
