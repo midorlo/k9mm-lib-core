@@ -1,6 +1,5 @@
-package com.midorlo.k9.util;
+package com.midorlo.k9;
 
-import com.midorlo.k9.domain.core.ComponentDescription;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -22,14 +21,10 @@ import org.springframework.lang.NonNull;
  * </p>
  */
 @Slf4j
-public abstract class K9Module implements ApplicationListener<ContextRefreshedEvent> {
-
-    @NonNull
-    protected abstract ComponentDescription getModuleMeta();
+public abstract class AbstractK9Module implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
     public void onApplicationEvent(@NonNull ContextRefreshedEvent event) {
-        //todo get module description and create if not exists. then log.
-        log.info("Loaded module {}", getModuleMeta());
+        log.info("Loaded module {}", getClass().getName());
     }
 }

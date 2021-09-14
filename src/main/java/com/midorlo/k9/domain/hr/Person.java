@@ -1,8 +1,14 @@
 package com.midorlo.k9.domain.hr;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
+@Table(name = "persons")
 public class Person {
 
     public static final String COLUMN_FIRSTNAME_NAME = "first_name";
@@ -19,16 +25,4 @@ public class Person {
 
     @Column(name = COLUMN_LASTNAME_NAME)
     protected String lastName;
-
-    public Long getId()                        {return id;}
-
-    public void setId(Long id)                 {this.id = id;}
-
-    public String getLastName()                {return lastName;}
-
-    public void setLastName(String lastName)   {this.lastName = lastName;}
-
-    public String getFirstName()               {return firstName;}
-
-    public void setFirstName(String firstName) {this.firstName = firstName;}
 }

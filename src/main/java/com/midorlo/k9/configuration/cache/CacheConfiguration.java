@@ -1,7 +1,7 @@
 package com.midorlo.k9.configuration.cache;
 
 import com.midorlo.k9.configuration.core.CoreProperties;
-import com.midorlo.k9.domain.core.ComponentDescription;
+import com.midorlo.k9.domain.core.Module;
 import lombok.extern.slf4j.Slf4j;
 import org.ehcache.config.builders.CacheConfigurationBuilder;
 import org.ehcache.config.builders.ExpiryPolicyBuilder;
@@ -17,12 +17,14 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.util.List;
 
 @EnableCaching
 @Slf4j
+@Component
 public abstract class CacheConfiguration {
 
     private         GitProperties                                           gitProperties;
@@ -68,7 +70,7 @@ public abstract class CacheConfiguration {
 
 
     protected List<String> getCaches() {
-        return List.of(ComponentDescription.class.getName()
+        return List.of(Module.class.getName()
                       );
     }
 
