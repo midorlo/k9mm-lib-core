@@ -1,4 +1,4 @@
-package com.midorlo.k9.web.rest;
+package com.midorlo.k9.web.rest.core;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;

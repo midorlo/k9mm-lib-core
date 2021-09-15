@@ -1,7 +1,6 @@
 package com.midorlo.k9.web.rest;
 
 import com.midorlo.k9.service.DefaultService;
-import com.midorlo.k9.web.PaginationUtilities;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +17,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Slf4j
-public abstract class DefaultController<
+public abstract class DefaultCrudController<
         E,
         PK extends Serializable,
         R extends JpaRepository<E, PK>,
@@ -27,11 +26,11 @@ public abstract class DefaultController<
     protected static final List<String> ALLOWED_ORDERED_PROPERTIES = List.of("name");
     protected final        S            service;
 
-    protected DefaultController(S service) {this.service = service;}
+    protected DefaultCrudController(S service) {this.service = service;}
 
     private boolean onlyContainsAllowedProperties(Pageable pageable) {
         return pageable.getSort().stream().map(Sort.Order::getProperty)
-                       .allMatch(DefaultController.ALLOWED_ORDERED_PROPERTIES::contains);
+                       .allMatch(DefaultCrudController.ALLOWED_ORDERED_PROPERTIES::contains);
     }
 
     @GetMapping("/")
@@ -43,8 +42,8 @@ public abstract class DefaultController<
 
         final Page<E> page = service.findAll(pageable);
         HttpHeaders headers =
-                PaginationUtilities.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(),
-                                                                  page);
+                RestUtilities.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(),
+                                                            page);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
