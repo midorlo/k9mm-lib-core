@@ -31,7 +31,7 @@ public class Servlet {
                        CascadeType.MERGE
                }
     )
-    @JoinColumn(name = SERVLETS_MODULES_MODULES_MODULE,
+    @JoinColumn(name = NAME_MODULE,
                 nullable = false
     )
     protected Module module;
