@@ -10,9 +10,9 @@ import java.text.MessageFormat;
 /**
  * Utility class for creating <a href="http://tools.ietf.org/html/rfc5988">RFC 5988</a> compliant Pagination Headers.
  */
-public final class PaginationUtil {
+public final class PaginationUtilities {
 
-    private PaginationUtil() {
+    private PaginationUtilities() {
     }
 
     /**

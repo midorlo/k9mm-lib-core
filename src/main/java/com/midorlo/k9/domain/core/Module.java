@@ -1,5 +1,6 @@
 package com.midorlo.k9.domain.core;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -18,7 +19,7 @@ import static com.midorlo.k9.domain.core.property.CoreDomainConstants.NAME;
 @Getter
 @Setter
 @RequiredArgsConstructor
-
+@AllArgsConstructor
 public class Module {
 
     @Id
@@ -27,4 +28,7 @@ public class Module {
             updatable = false
     )
     protected String name;
+
+    @Column
+    protected boolean initialized;
 }

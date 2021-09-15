@@ -1,4 +1,4 @@
-package com.midorlo.k9.repository;
+package com.midorlo.k9.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -8,14 +8,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
-public class AbstractJpaService<E, PK> {
+public class AbstractJpaService<E, PK extends Serializable, R extends JpaRepository<E, PK>> {
 
-    protected final JpaRepository<E, PK> repository;
+    protected final R repository;
 
-    public AbstractJpaService(JpaRepository<E, PK> repository) {this.repository = repository;}
+    public AbstractJpaService(R repository) {this.repository = repository;}
 
     @Transactional(readOnly = true)
     public List<E> findAll() {
@@ -47,8 +49,8 @@ public class AbstractJpaService<E, PK> {
     }
 
     @Transactional
-    public E findById(PK pk) {
-        return repository.findById(pk).orElseThrow(EntityNotFoundException::new);
+    public Optional<E> findById(PK pk) {
+        return repository.findById(pk);
     }
 
     @Transactional(readOnly = true)
