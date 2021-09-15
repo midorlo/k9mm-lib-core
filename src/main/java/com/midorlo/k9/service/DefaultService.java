@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Slf4j
-public class AbstractJpaService<E, PK extends Serializable, R extends JpaRepository<E, PK>> {
+public class DefaultService<E, PK extends Serializable, R extends JpaRepository<E, PK>> {
 
     protected final R repository;
 
-    public AbstractJpaService(R repository) {this.repository = repository;}
+    public DefaultService(R repository) {this.repository = repository;}
 
     @Transactional(readOnly = true)
     public List<E> findAll() {
