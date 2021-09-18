@@ -40,7 +40,7 @@ public abstract class DefaultCrudController<
             return ResponseEntity.badRequest().build();
         }
 
-        final Page<E> page = service.findAll(pageable);
+        final Page<E> page = service.readAll(pageable);
         HttpHeaders headers =
                 RestUtilities.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(),
                                                             page);
@@ -50,7 +50,7 @@ public abstract class DefaultCrudController<
     @GetMapping("/{pk}")
     public ResponseEntity<E> getOne(@PathVariable("pk") PK pk) {
         log.debug("REST request to get records with pk = {}", pk);
-        E byId = service.findOne(pk).orElseThrow(() -> new RuntimeException("todo impl"));
+        E byId = service.readOne(pk).orElseThrow(() -> new RuntimeException("todo impl"));
         return new ResponseEntity<>(byId, HttpStatus.OK);
     }
 }
