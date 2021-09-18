@@ -1,4 +1,4 @@
-package com.midorlo.k9.domain.hr;
+package com.midorlo.k9.domain.core;
 
 import lombok.Getter;
 import lombok.Setter;
