@@ -1,6 +1,6 @@
 package com.midorlo.k9.web.rest;
 
-import com.midorlo.k9.service.DefaultService;
+import com.midorlo.k9.service.AbstractCrudService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +21,7 @@ public abstract class DefaultCrudController<
         E,
         PK extends Serializable,
         R extends JpaRepository<E, PK>,
-        S extends DefaultService<E, PK, R>> {
+        S extends AbstractCrudService<E, PK, R>> {
 
     protected static final List<String> ALLOWED_ORDERED_PROPERTIES = List.of("name");
     protected final        S            service;
@@ -50,7 +50,7 @@ public abstract class DefaultCrudController<
     @GetMapping("/{pk}")
     public ResponseEntity<E> getOne(@PathVariable("pk") PK pk) {
         log.debug("REST request to get records with pk = {}", pk);
-        E byId = service.findById(pk).orElseThrow(() -> new RuntimeException("todo impl"));
+        E byId = service.findOne(pk).orElseThrow(() -> new RuntimeException("todo impl"));
         return new ResponseEntity<>(byId, HttpStatus.OK);
     }
 }

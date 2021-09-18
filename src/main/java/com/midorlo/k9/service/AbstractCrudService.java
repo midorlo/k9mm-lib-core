@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Slf4j
-public class DefaultService<E, PK extends Serializable, R extends JpaRepository<E, PK>> {
+public class AbstractCrudService<E, PK extends Serializable, R extends JpaRepository<E, PK>> {
 
     protected final R repository;
 
-    public DefaultService(R repository) {this.repository = repository;}
+    public AbstractCrudService(R repository) {this.repository = repository;}
 
     @Transactional(readOnly = true)
     public List<E> findAll() {
@@ -25,7 +25,7 @@ public class DefaultService<E, PK extends Serializable, R extends JpaRepository<
     }
 
     @Transactional
-    public E create(E entity) {
+    public E createOne(E entity) {
         E storedEntity = repository.save(entity);
         log.debug("Stored {}", storedEntity);
         return storedEntity;
@@ -44,12 +44,12 @@ public class DefaultService<E, PK extends Serializable, R extends JpaRepository<
     }
 
     @Transactional(readOnly = true)
-    public List<E> findAllById(Iterable<PK> pks) {
+    public List<E> findMultiple(Iterable<PK> pks) {
         return repository.findAllById(pks);
     }
 
     @Transactional
-    public Optional<E> findById(PK pk) {
+    public Optional<E> findOne(PK pk) {
         return repository.findById(pk);
     }
 

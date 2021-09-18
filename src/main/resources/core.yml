@@ -14,22 +14,3 @@ core:
     license:
       name: all rights reserved
       url: https://k9.midorlo.com/license
-
-server:
-  port: 8080
-spring:
-  application:
-    name: k9
-  datasource:
-    url: jdbc:postgresql://localhost:5432/dev?currentSchema=core
-    password: k9
-    username: k9
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    open-in-view: true
-    generate-ddl: true
-    hibernate:
-      ddl-auto: none
-  sql:
-    init:
-      platform: postgres

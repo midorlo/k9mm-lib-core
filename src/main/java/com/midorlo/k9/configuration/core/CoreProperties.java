@@ -1,12 +1,13 @@
 package com.midorlo.k9.configuration.core;
 
+import com.midorlo.k9.util.YamlPropertySourceFactory;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.info.BuildProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
 
 /**
  * <p>Properties specific to K9.</p>
@@ -15,26 +16,27 @@ import org.springframework.context.annotation.PropertySources;
 @Data
 @Slf4j
 @Configuration
-@PropertySources({
-        @PropertySource(value = "classpath:core.yml"),
-        @PropertySource(value = "classpath:git.properties", ignoreResourceNotFound = true),
-        @PropertySource(value = "classpath:META-INF/build-info.properties", ignoreResourceNotFound = true)
-})
-@ConfigurationProperties("core.yml")
+@ConfigurationProperties(prefix = "core")
+@PropertySource(value = "classpath:core.yml", factory = YamlPropertySourceFactory.class)
 public class CoreProperties {
 
-    public CoreProperties() {
-        log.info("Created" + this);
-    }
+    private String  name;
+    private String  version;
+    private Integer port;
+
+    private final BuildProperties buildProperties;
 
     private final ApiDocs apidocs = new ApiDocs();
     private final About   about   = new About();
     private final Cache   cache   = new Cache();
     private final Logging logging = new Logging();
 
-    private String  name;
-    private String  version;
-    private Integer port;
+    public CoreProperties(@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+                                  BuildProperties buildProperties) {
+        log.info("Created" + this);
+        this.buildProperties = buildProperties;
+    }
+
 
     @Data
     public static class About {
@@ -100,12 +102,12 @@ public class CoreProperties {
         @Accessors(chain = true)
         public static class Redis {
             private String[] server                                = { "redis://localhost:6379" };
-            private int      expiration                            = 300; // 5 minutes
+            private int      expiration                            = 300;   // 5 minutes
             private boolean  cluster                               = false;
-            private int      connectionPoolSize                    = 64; // default as in redisson
-            private int      connectionMinimumIdleSize             = 24; // default as in redisson
-            private int      subscriptionConnectionPoolSize        = 50; // default as in redisson
-            private int      subscriptionConnectionMinimumIdleSize = 1; // default as in redisson
+            private int      connectionPoolSize                    = 64;    // default as in redisson
+            private int      connectionMinimumIdleSize             = 24;    // default as in redisson
+            private int      subscriptionConnectionPoolSize        = 50;    // default as in redisson
+            private int      subscriptionConnectionMinimumIdleSize = 1;     // default as in redisson
         }
     }
 
